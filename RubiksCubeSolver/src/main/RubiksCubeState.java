@@ -94,4 +94,37 @@ public class RubiksCubeState {
 			}
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		return Arrays.toString(this.positions).hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		RubiksCubeState state = (RubiksCubeState) obj;
+		if (state.positions.length != this.positions.length) return false;
+		for (int i = 0; i < this.positions.length; i++) {
+			if (this.positions[i] != state.positions[i]) 
+				return false;
+		}
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		char[] pos = {'o', 'y', 'r', 'y', 'b', 'g', 'g', 'o', 'o', 'g', 'w', 'o', 'y', 'b', 'r', 'r', 'w', 'g', 'b', 'y', 'r', 'w', 'b', 'w'};
+		
+		System.out.println("Base Cube:");
+		RubiksCubeState r = new RubiksCubeState(pos);
+		RubiksCubeState.printCube(r.positions);
+		
+		String solutionPath = Solver.Solver(r);
+		System.out.println("\nTo solve cube apply these rotations: " + solutionPath+"\n");
+		
+		System.out.println("Solved Cube:");
+		RubiksCubeState end = new RubiksCubeState(pos);
+		end.executeMoveSeq(solutionPath);
+		RubiksCubeState.printCube(end.positions);
+		
+	}
 }
