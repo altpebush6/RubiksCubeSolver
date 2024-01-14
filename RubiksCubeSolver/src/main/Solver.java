@@ -65,5 +65,44 @@ public class Solver {
 	    return "No solution, impossible configuration";
 	   
 	}
+	private static String reverse(String path) {
+	    path += " ";
+	    String reverse = "";
+	    
+        for (int i = 0; i < path.length(); i++) {
+            if (path.charAt(i) == ' ')
+                reverse += "' ";
+            else if (path.charAt(i) != '\'')
+                reverse += path.charAt(i);
+            else {
+                reverse += " ";
+                i++;
+            }
+        }
+        
+        String ar[] = reverse.split(" ");
+        for (int i = 0; i < ar.length/2; i++) {
+            String temp = ar[i];
+            ar[i] = ar[ar.length-1-i];
+            ar[ar.length-1-i] = temp;
+        }
+        
+        return String.join(" ", ar);
+	}
+	
+	private static String path(RubiksCubeState state, HashMap<RubiksCubeState, String> parents) {
+	    String path = parents.get(state);
+	    
+	    RubiksCubeState next = new RubiksCubeState(state.positions);
+        next.executeMoveSeq(path);
+        
+        while (parents.get(next) != null) {
+            path += " " + parents.get(next);
+            next = new RubiksCubeState(state.positions);
+            next.executeMoveSeq(path);
+        }
+        
+        return path;
+	}
 	
 }
