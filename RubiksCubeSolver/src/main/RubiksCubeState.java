@@ -95,6 +95,19 @@ public class RubiksCubeState {
 		}
 	}
 
+
+	public static void printCube(char[] positions2) {
+		System.out.println("     " + positions2[0] + " " + positions2[1]);
+		System.out.println("     " + positions2[2] + " " + positions2[3]);
+		
+		System.out.println(positions2[8] + " " + positions2[9] + "  " + positions2[12] + " " + positions2[13] + "  " + positions2[20] + " " + positions2[21] + "  " + positions2[4] + " " + positions2[5]);
+		System.out.println(positions2[10] + " " + positions2[11] + "  " + positions2[14] + " " + positions2[15] + "  " + positions2[22] + " " + positions2[23] + "  " + positions2[6] + " " + positions2[7]);
+		
+		System.out.println("     " + positions2[16] + " " + positions2[17]);
+		System.out.println("     " + positions2[18] + " " + positions2[19]);
+	}
+
+
 	@Override
 	public int hashCode() {
 		return Arrays.toString(this.positions).hashCode();
