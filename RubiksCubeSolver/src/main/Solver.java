@@ -96,13 +96,13 @@ public class Solver {
 	    RubiksCubeState next = new RubiksCubeState(state.positions);
         next.executeMoveSeq(path);
         
-        while (parents.get(next) != null) {
+        while (parents.get(next) != null){
             path += " " + parents.get(next);
             next = new RubiksCubeState(state.positions);
             next.executeMoveSeq(path);
-        }
+		}
         
-        return path;
+        return path;
 	}
 	
 }
