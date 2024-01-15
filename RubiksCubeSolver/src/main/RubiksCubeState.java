@@ -125,19 +125,36 @@ public class RubiksCubeState {
 	}
 	
 	public static void main(String[] args) {
-		char[] pos = {'o', 'y', 'r', 'y', 'b', 'g', 'g', 'o', 'o', 'g', 'w', 'o', 'y', 'b', 'r', 'r', 'w', 'g', 'b', 'y', 'r', 'w', 'b', 'w'};
+		System.out.println("Enter the cube state (top1 top2 top3 top4 left1 left2 left3 left4 front1 front2 front3 front4 right1 right2 right3 right4 bottom1 bottom2 bottom3 bottom4 back1 back2 back3 back4): ");
+		
+		Scanner inputCube = new Scanner(System.in);
+		String[] positions = inputCube.nextLine().split(" ");
+		
+		char[] pos = new char[positions.length];
+		
+		for(int i = 0; i < positions.length; i++) {
+			char position = positions[i].charAt(0);
+			pos[i] = position;
+		}
 		
 		System.out.println("Base Cube:");
 		RubiksCubeState r = new RubiksCubeState(pos);
 		RubiksCubeState.printCube(r.positions);
 		
 		String solutionPath = Solver.Solver(r);
-		System.out.println("\nTo solve cube apply these rotations: " + solutionPath+"\n");
 		
-		System.out.println("Solved Cube:");
-		RubiksCubeState end = new RubiksCubeState(pos);
-		end.executeMoveSeq(solutionPath);
-		RubiksCubeState.printCube(end.positions);
+		inputCube.close();
 		
+		if(solutionPath.equals("No solution, impossible configuration")){
+			return;
+		}
+		else{
+			System.out.println("\nTo solve cube apply these rotations: " + solutionPath+"\n");
+			inputCube.close();
+			System.out.println("Solved Cube:");
+			RubiksCubeState end = new RubiksCubeState(pos);
+			end.executeMoveSeq(solutionPath);
+			RubiksCubeState.printCube(end.positions);
+		}
 	}
 }
