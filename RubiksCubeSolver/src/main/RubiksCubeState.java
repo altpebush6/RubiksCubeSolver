@@ -1,6 +1,7 @@
 package main;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class RubiksCubeState {
 
@@ -34,6 +35,8 @@ public class RubiksCubeState {
         this.isNullState = nullState;
     }
 
+	// These private arrays represent basic moves of the Rubik's Cube. 
+	// The front denoted by F, Right denoted by R, Up denoted by U.
 	private static int[] F = {0,1,5,6,4,16,17,7,11,8,9,10,3,13,14,2,15,12,18,19,20,21,22,23};
     private static int[] Fi = {0, 1, 15, 12, 4, 2, 3, 7, 9, 10, 11, 8, 17, 13, 14, 16, 5, 6, 18, 19, 20, 21, 22, 23};
     private static int[] U = {3,0,1,2,8,9,6,7,12,13,10,11,20,21,14,15,16,17,18,19,4,5,22,23};
@@ -41,7 +44,7 @@ public class RubiksCubeState {
     private static int[] R = {0,9,10,3,4,5,6,7,8,17,18,11,15,12,13,14,16,23,20,19,2,21,22,1};
     private static int[] Ri = {0, 23, 20, 3, 4, 5, 6, 7, 8, 1, 2, 11, 13, 14, 15, 12, 16, 9, 10, 19, 18, 21, 22, 17};
 	
-
+	// This method rotates the rubic cube by array.
 	public char[] rotateApply(int[] perm) {
 		char[] newPositions = new char[24];
 		for (int i = 0; i < 24; i++) {
