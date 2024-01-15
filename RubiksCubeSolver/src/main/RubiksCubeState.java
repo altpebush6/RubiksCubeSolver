@@ -142,12 +142,19 @@ public class RubiksCubeState {
 		RubiksCubeState.printCube(r.positions);
 		
 		String solutionPath = Solver.Solver(r);
-		System.out.println("\nTo solve cube apply these rotations: " + solutionPath+"\n");
 		
-		System.out.println("Solved Cube:");
-		RubiksCubeState end = new RubiksCubeState(pos);
-		end.executeMoveSeq(solutionPath);
-		RubiksCubeState.printCube(end.positions);
 		inputCube.close();
+		
+		if(solutionPath.equals("No solution, impossible configuration")){
+			return;
+		}
+		else{
+			System.out.println("\nTo solve cube apply these rotations: " + solutionPath+"\n");
+			inputCube.close();
+			System.out.println("Solved Cube:");
+			RubiksCubeState end = new RubiksCubeState(pos);
+			end.executeMoveSeq(solutionPath);
+			RubiksCubeState.printCube(end.positions);
+		}
 	}
 }
