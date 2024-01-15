@@ -148,6 +148,6 @@ public class RubiksCubeState {
 		RubiksCubeState end = new RubiksCubeState(pos);
 		end.executeMoveSeq(solutionPath);
 		RubiksCubeState.printCube(end.positions);
-		
+		inputCube.close();
 	}
 }
